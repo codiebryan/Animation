@@ -91,6 +91,19 @@ GameEngine.prototype.startInput = function () {
             this.addEntity(bird4);
             this.addEntity(bird6);
             this.addEntity(ghost);
+    
+            this.ctx.canvas.addEventListener("click", function (e) {
+                var man = new Man(that, e.clientX,e.clientY);
+                that.addEntity(man);
+                
+
+        
+        
+                         
+                
+        
+            }, false);
+            
 
     
 

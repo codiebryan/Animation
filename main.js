@@ -245,7 +245,7 @@ function Bird2(game) {
     //this.TurnLeftAnimation = new Animation(ASSET_MANAGER.getAsset("./img/dino.png"), 192, 0, 960 / 5, 576 / 3, 0.3, 3, true, false);
     //this.TurnRightAnimation = new Animation(ASSET_MANAGER.getAsset("./img/dino.png"), 192, 0, 960 / 5, 576 / 3, 0.3, 3, true, true);
     this.jumping = false;
-    this.speed = 100;
+    this.speed = 300;
     this.radius = 0;
     this.ground = 462;
     this.walkLeft = true;
@@ -395,6 +395,47 @@ Bird6.prototype.draw = function (ctx) {
 }
 
 
+function Man(game, x, y) {
+    this.animation = new Animation(ASSET_MANAGER.getAsset("./img/man.png"), 0, 0, 880 / 8, 1280 / 10, 0.5, 80, true, false);
+    //this.WalkLeftAnimation = new Animation(ASSET_MANAGER.getAsset("./img/ghost2.png"), 0, 64, 576/ 9, 384 / 6, 0.5, 9, true, true);
+    //this.TurnLeftAnimation = new Animation(ASSET_MANAGER.getAsset("./img/dino.png"), 192, 0, 960 / 5, 576 / 3, 0.3, 3, true, false);
+    //this.TurnRightAnimation = new Animation(ASSET_MANAGER.getAsset("./img/dino.png"), 192, 0, 960 / 5, 576 / 3, 0.3, 3, true, true);
+    this.jumping = false;
+    this.speed = 100;
+    this.radius = 0;
+    this.ground = 462;
+    this.walkLeft = true;
+    this.walkRight = false; 
+    this.jumpTime = 0;
+    Entity.call(this, game, x, y);
+
+}
+
+Man.prototype = new Entity();
+Man.prototype.constructor = Man;
+
+Man.prototype.update = function() {
+    
+
+    Entity.prototype.update.call(this);
+
+}
+
+Man.prototype.draw = function (ctx) {
+    if(this.walkLeft) {
+        this.animation.drawFrame(this.game.clockTick, ctx, this.x, this.y);
+        //this.animation.drawFrame(this.game.clockTick, ctx, this.x, this.y);
+    }
+    else {
+        this.animation.drawFrame(this.game.clockTick, ctx, this.x, this.y);
+    }
+        // this.walkRightAnimation.drawFrame(this.game.clockTick, ctx, this.x, this.y);
+
+    Entity.prototype.draw.call(this);
+
+
+
+}
 
 
 // the "main" code begins here
@@ -426,4 +467,3 @@ ASSET_MANAGER.downloadAll(function () {
     gameEngine.start();
  
 });
-// #endregion
