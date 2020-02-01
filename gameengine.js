@@ -1,6 +1,6 @@
 // This game shell was happily copied from Googler Seth Ladd's "Bad Aliens" game and his Google IO talk in 2011
 
-var bgMusic = new Audio("./MoonlightTemptation.mp3"); 
+var music = new Audio("./temp.mp3"); 
 
 window.requestAnimFrame = (function () {
     return window.requestAnimationFrame ||
@@ -16,7 +16,7 @@ window.requestAnimFrame = (function () {
 
 function Timer() {
     this.gameTime = 0;
-    this.maxStep = 0.05;
+    this.maxStep = 5;
     this.wallLastTimestamp = 0;
 }
 
@@ -93,6 +93,10 @@ GameEngine.prototype.startInput = function () {
             this.addEntity(ghost);
     
             this.ctx.canvas.addEventListener("click", function (e) {
+                if(that.count === 0) {
+                    that.count++;
+                    music.play();
+                }
                 var man = new Man(that, e.clientX,e.clientY);
                 that.addEntity(man);
                 
